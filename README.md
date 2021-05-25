@@ -30,7 +30,7 @@ e-mail us at:
 
 ### License
 
-This software is license under the MIT license.
+This software is license under the  license.
 
-Copyright (c) 2021 **by: Ted Ooghe**
+Copyright (c) GNU 2021 **by: Ted Ooghe**
 
