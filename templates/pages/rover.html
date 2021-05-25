@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="Marscape"> 
+
+        <div id = 'dots' style='text-align:center'>
+            <div id = 'dotbox'>
+                <img src = "{% static 'images/Mars_image1.jpeg' %}" class='thumbnail' onclick = "selectThumb(this.src)" />
+                <img src = "{% static 'images/Mars_image2.jpeg' %}" class='thumbnail' onclick = "selectThumb(this.src)"/>
+                <img src = "{% static 'images/Mars_image3.jpeg' %}" class='thumbnail' onclick = "selectThumb(this.src)"/>
+                <img src = "{% static 'images/Mars_image4.jpeg' %}" class='thumbnail' onclick = "selectThumb(this.src)"/>
+                <img src = "{% static 'images/Mars_image5.jpeg' %}" class='thumbnail' onclick = "selectThumb(this.src)"/>
+            </div>
+            <h3>To take a walk on Mars, select a location at the <br> 
+                top and click the Marscape that loads in visor view.
+        </div> 
+        
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"> &times;</a>
+            <a href="#">Curiosity Rover<br>
+                landed at <br> Gale Crater, Mars <br>
+                11/26/2011 <br><br></a>
+            <a href="https://www.nasa.gov/mission_pages/mars/main/index.html">Click HERE for more about Mars mission<br></a>
+            <a href='https://github.com/PdxCodeGuild/Class_Runtime_Terrors/tree/master/Students/Ted/Mars/Project_rover'>Click HERE to see the code in github</a>
+        </div>
+        <span id = 'opened' style="font-size:20px;cursor:pointer" onclick="openNav()">  &#9776;</span>
+             
+    <div class='helmet'>
+        <div class='visor'>     
+            <img src id = 'first' style = 'width: {imgSize}, height: {imgSize}' onclick = 'mag()'>
+        </div>
+        
+    </div>
+
+</div>
+
+<script>
+let hand = []
+const pics = document.querySelectorAll('.thumbnail')
+
+
+const selectThumb= function(e){
+    running = false
+    console.log(e)
+    let first = document.getElementById('first')
+    first.setAttribute('src', e)
+    let startingSize = 1000
+    let justifyLeft = '-100px'
+    let justifyBottom = '-50px'
+    first.style.width = '1000px'
+    first.style.height = '1000px'
+    first.style.left = '-100px'
+    first.style.bottom = '-50px'
+    first.style.transition ='none'
+}
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+let running = false
+const intervalids = []
+const mag = () => {
+    if (running) return
+    running = true
+    console.log('mag ran')
+    let image = document.getElementById('first')
+    let imgSize = '1350px'
+    let startingSize = 1000
+    let justiceLeft = -100
+    let justiceBottom = -50
+    let justifyLeft = '-100px'
+    let justifyBottom = '-50px'
+    image.style.transition ='ease 1s'
+    
+    const sleep = (milliseconds) => {
+        return new Promise(resolve => setTimeout(resolve, milliseconds))
+    }
+    
+    let counter = 0
+    
+    const intervalid = setInterval(()=>{
+        counter ++
+        pics.forEach(dot =>{
+        dot.addEventListener('click', ()=> {
+            clearInterval(intervalid)
+            counter = 0
+        })
+    })
+        if (counter == 24){
+            clearInterval(intervalid)
+        }
+        console.log(counter)
+        if (counter > 1) {
+            image.style.transition ='ease 1s'
+        }
+        
+        startingSize += 30
+        imgSize = startingSize.toString()+'px'
+        justiceLeft -= 20
+        justiceBottom += 10
+        justifyLeft = justiceLeft.toString()+'px'         
+        justifyBottom = justiceBottom.toString()+'px'         
+        document.getElementById('first').style.width = imgSize
+        document.getElementById('first').style.height = imgSize
+        document.getElementById('first').style.left = justifyLeft
+        document.getElementById('first').style.bottom = justifyBottom
+
+    },1000)
+    intervalids.push(intervalid)    
+}
+    
+
+    </script>
+{% endblock %}
