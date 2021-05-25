@@ -11,7 +11,7 @@ https://????github.io/Mars
 
 ## Known Bugs
 
-Clicking twice on the view will make call mag() again, without stopping the first run.
+There are no known bugs
 
 If you encounter any issues using this software, have comments or suggestions
 e-mail us at:
