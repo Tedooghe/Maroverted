@@ -30,7 +30,7 @@ e-mail us at:
 
 ### License
 
-This software is license under the  license.
+This software is license under the GNU license.
 
 Copyright (c) GNU 2021 **by: Ted Ooghe**
 
